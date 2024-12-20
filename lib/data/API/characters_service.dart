@@ -1,5 +1,4 @@
 import 'package:attack_on_titan_bloc/constants/strings.dart';
-import 'package:attack_on_titan_bloc/data/models/character.dart';
 import 'package:dio/dio.dart';
 
 class CharactersService {
@@ -18,7 +17,7 @@ class CharactersService {
   Future<List<dynamic>> getAllCharacters() async {
     try {
       Response response = await dio.get('characters');
-      print(response.data.toString());
+      // print(response.data.toString());
       return response.data;
     } catch (e) {
       print(e.toString());

@@ -2,7 +2,9 @@ import 'package:attack_on_titan_bloc/app_router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(AttackOnTitanApp(appRouter: AppRouter(),));
+  runApp(AttackOnTitanApp(
+    appRouter: AppRouter(),
+  ));
 }
 
 class AttackOnTitanApp extends StatelessWidget {
@@ -18,3 +20,6 @@ class AttackOnTitanApp extends StatelessWidget {
     );
   }
 }
+
+
+//! cubit next 
