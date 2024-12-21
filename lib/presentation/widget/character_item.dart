@@ -11,11 +11,11 @@ class CharacterItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-      padding: const EdgeInsetsDirectional.all(4),
+      padding: const EdgeInsetsDirectional.all(3),
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: MyColors.navy,
+        color: MyColors.white,
       ),
       child: GridTile(
         footer: Container(

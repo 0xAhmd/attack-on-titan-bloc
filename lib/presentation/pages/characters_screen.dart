@@ -14,6 +14,101 @@ class CharactersScreen extends StatefulWidget {
 
 class _CharactersScreenState extends State<CharactersScreen> {
   late List<Character> allCharacters;
+  late List<Character> filteredCharacters;
+  bool isSearching = false;
+  final TextEditingController _searchController = TextEditingController();
+
+  Widget buildSearchField() {
+    return TextField(
+      cursorColor: Colors.white,
+      controller: _searchController,
+      decoration: const InputDecoration(
+        hintText: 'Find a character...',
+        border: InputBorder.none,
+        hintStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+        ),
+      ),
+      style: const TextStyle(
+        color: Colors.white,
+        fontSize: 18,
+      ),
+      onChanged: (query) {
+        addFilteredCharacters(query);
+      },
+    );
+  }
+
+  void addFilteredCharacters(String query) {
+    filteredCharacters = allCharacters
+        .where((character) =>
+            character.name.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    setState(() {});
+  }
+
+  List<Widget> buildAppBarActions() {
+    if (isSearching) {
+      return [
+        IconButton(
+            onPressed: () {
+              _clearSearch();
+              Navigator.pop(context);
+              setState(
+                () {
+                  isSearching = false;
+                },
+              );
+            },
+            icon: Icon(
+              Icons.clear,
+              color: MyColors.white,
+            ))
+      ];
+    } else {
+      return [
+        IconButton(
+            onPressed: () {
+              _startSearch();
+              setState(() {
+                isSearching = true;
+              });
+            },
+            icon: const Padding(
+              padding: EdgeInsets.only(right: 12.0),
+              child: Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+            ))
+      ];
+    }
+  }
+
+  void _startSearch() {
+    ModalRoute.of(context)
+        ?.addLocalHistoryEntry(LocalHistoryEntry(onRemove: _stopSearching));
+
+    setState(() {
+      isSearching = true;
+    });
+  }
+
+  void _stopSearching() {
+    _clearSearch();
+
+    setState(() {
+      isSearching = false;
+    });
+  }
+
+  void _clearSearch() {
+    setState(() {
+      _searchController.clear();
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -62,14 +157,24 @@ class _CharactersScreenState extends State<CharactersScreen> {
           crossAxisSpacing: 1,
           mainAxisSpacing: 0.5,
         ),
-        itemCount: allCharacters.length,
+        itemCount: _searchController.text.isNotEmpty
+            ? filteredCharacters.length
+            : allCharacters.length,
         itemBuilder: (context, index) {
           return CharacterItemCard(
-            character: allCharacters[index],
+            character: _searchController.text.isNotEmpty
+                ? filteredCharacters[index]
+                : allCharacters[index],
           );
         },
-
       ),
+    );
+  }
+
+  Widget buildAppBarTitle() {
+    return const Text(
+      'Characters',
+      style: TextStyle(fontSize: 32, color: Colors.white),
     );
   }
 
@@ -79,11 +184,11 @@ class _CharactersScreenState extends State<CharactersScreen> {
       backgroundColor: MyColors.navy,
       appBar: AppBar(
         elevation: 0,
-        title: const Text(
-          'Characters',
-          style: TextStyle(fontSize: 32, color: Colors.white),
-        ),
+        title: isSearching ? buildSearchField() : buildAppBarTitle(),
         backgroundColor: MyColors.navy,
+        actions: [
+          ...buildAppBarActions(),
+        ],
       ),
       body: buildBlocWidget(),
     );

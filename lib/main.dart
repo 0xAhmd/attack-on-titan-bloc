@@ -20,6 +20,8 @@ class AttackOnTitanApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        appBarTheme:
+            const AppBarTheme(iconTheme: IconThemeData(color: Colors.white)),
         fontFamily: GoogleFonts.tinos().fontFamily,
       ),
       debugShowCheckedModeBanner: false,

@@ -1,6 +1,6 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 class MyColors {
   static const Color navy = Color(0xFF181c35);
-  static const Color white = Color(0xFF9E9E9E);
+  static Color white = Colors.grey.shade100;
 }
