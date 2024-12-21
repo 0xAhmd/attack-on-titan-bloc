@@ -26,7 +26,7 @@ class AttackOnTitanApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute:
-          appRouter.generateRoute, // Corrected to lowercase 'generateRoute'
+          appRouter.generateRoute,
     );
   }
 }
