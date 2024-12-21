@@ -10,15 +10,14 @@ class Character {
   late List<String> episodes;
 
   Character.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    image = json['img'];
-    nicknames = json['alias'];
-    roles = json['species'];
-    age = json['age'];
-    gender = json['gender'];
-    height = json['height'];
-    episodes = json['episodes'];
-    return;
+    id = json['id'] ?? 0;
+    name = json['name'] ?? 'Unknown';
+    image = json['img'] ?? '';
+    nicknames = (json['alias'] as List<dynamic>?)?.cast<String>() ?? [];
+    roles = (json['species'] as List<dynamic>?)?.cast<String>() ?? [];
+    age = json['age'] is int ? json['age'] : 0;
+    gender = json['gender'] ?? 'Unknown';
+    height = json['height'] ?? 'Unknown';
+    episodes = (json['episodes'] as List<dynamic>?)?.cast<String>() ?? [];
   }
 }

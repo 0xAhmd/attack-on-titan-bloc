@@ -1,4 +1,5 @@
 import 'package:attack_on_titan_bloc/business_logic/cubit/character_cubit.dart';
+import 'package:attack_on_titan_bloc/constants/colors.dart';
 import 'package:attack_on_titan_bloc/data/models/character.dart';
 import 'package:attack_on_titan_bloc/presentation/widget/character_item.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
   @override
   void initState() {
     super.initState();
-    allCharacters = BlocProvider.of<CharacterCubit>(context).getCharacters();
+    BlocProvider.of<CharacterCubit>(context).getCharacters();
   }
 
   Widget buildBlocWidget() {
@@ -46,31 +47,43 @@ class _CharactersScreenState extends State<CharactersScreen> {
   }
 
   Widget buildCharactersList() {
-    return GridView.builder(
-      shrinkWrap: true,
-      padding: EdgeInsets.zero,
-      physics: const ClampingScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 2 / 3,
-        crossAxisSpacing: 1,
-        mainAxisSpacing: 1,
+    return Container(
+      decoration: const BoxDecoration(
+        color: MyColors.navy,
       ),
-      itemCount: allCharacters.length,
-      itemBuilder: (context, index) {
-        return CharacterItemCard(
-          character: allCharacters[index],
-          // Todo: add characters
-        );
-      },
+      child: GridView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        padding: EdgeInsets.zero,
+        physics: const ClampingScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 0.9,
+          crossAxisSpacing: 1,
+          mainAxisSpacing: 0.5,
+        ),
+        itemCount: allCharacters.length,
+        itemBuilder: (context, index) {
+          return CharacterItemCard(
+            character: allCharacters[index],
+          );
+        },
+
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColors.navy,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        elevation: 0,
+        title: const Text(
+          'Characters',
+          style: TextStyle(fontSize: 32, color: Colors.white),
+        ),
+        backgroundColor: MyColors.navy,
       ),
       body: buildBlocWidget(),
     );

@@ -1,27 +1,55 @@
-import 'package:attack_on_titan_bloc/constants/strings.dart';
+import 'package:attack_on_titan_bloc/data/models/character.dart';
 import 'package:dio/dio.dart';
 
-class CharactersService {
-  late Dio dio;
+class AttackOnTitanApiService {
+  final String _baseUrl;
+  final Dio _dio;
 
-  CharactersService() {
-    BaseOptions options = BaseOptions(
-      baseUrl: baseUrl,
-      receiveDataWhenStatusError: true,
-      connectTimeout: const Duration(seconds: 20),
-      receiveTimeout: const Duration(seconds: 20),
-    );
-    dio = Dio(options);
+  AttackOnTitanApiService(this._baseUrl, this._dio);
+
+  Future<List<Character>> fetchCharacters() async {
+    final url = '$_baseUrl/characters';
+    try {
+      final response = await _dio.get(url);
+      final data = response.data;
+      if (data is Map<String, dynamic> && data.containsKey('results')) {
+        return (data['results'] as List)
+            .map((characterJson) => Character.fromJson(characterJson))
+            .where(
+                (character) => character.id != 7) // Exclude character with id 7
+            .toList();
+      } else {
+        throw Exception('Unexpected response format');
+      }
+    } catch (e) {
+      throw Exception('Failed to load characters: $e');
+    }
   }
 
-  Future<List<dynamic>> getAllCharacters() async {
+  Future<Character> fetchCharacterById(int id) async {
+    final url = '$_baseUrl/characters/$id';
     try {
-      Response response = await dio.get('characters');
-      // print(response.data.toString());
-      return response.data;
+      final response = await _dio.get(url);
+      return Character.fromJson(response.data);
     } catch (e) {
-      print(e.toString());
-      return [];
+      throw Exception('Failed to load character: $e');
+    }
+  }
+
+  Future<List<Character>> searchCharacters(String query) async {
+    final url = '$_baseUrl/characters?search=$query';
+    try {
+      final response = await _dio.get(url);
+      final data = response.data;
+      if (data is Map<String, dynamic> && data.containsKey('results')) {
+        return (data['results'] as List)
+            .map((characterJson) => Character.fromJson(characterJson))
+            .toList();
+      } else {
+        throw Exception('Unexpected response format');
+      }
+    } catch (e) {
+      throw Exception('Failed to search characters: $e');
     }
   }
 }

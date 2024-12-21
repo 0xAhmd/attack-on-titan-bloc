@@ -1,3 +1,4 @@
+import 'package:attack_on_titan_bloc/constants/colors.dart';
 import 'package:attack_on_titan_bloc/data/models/character.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class CharacterItemCard extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
+        color: MyColors.navy,
       ),
       child: GridTile(
         footer: Container(
@@ -36,16 +37,20 @@ class CharacterItemCard extends StatelessWidget {
           ),
         ),
         child: Container(
-          color: Colors.grey.shade500,
-          child: character.image.isNotEmpty
-              ? FadeInImage.assetNetwork(
-                  placeholder: 'assets/images/loading.gif',
-                  image: character.image,
-                  width: double.infinity,
-                  height: double.infinity,
-                )
-              : Image.asset('assets/images/placeholder.png'),
-        ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: MyColors.navy,
+            ),
+            width: 150,
+            height: 220,
+            child: character.image.isNotEmpty
+                ? FadeInImage.assetNetwork(
+                    placeholder: 'assets/images/loading.gif',
+                    image: character.image,
+                    width: double.infinity,
+                    height: double.infinity,
+                  )
+                : Image.asset('assets/images/palceholder.png')),
       ),
     );
   }

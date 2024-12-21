@@ -2,12 +2,15 @@ import 'package:attack_on_titan_bloc/data/API/characters_service.dart';
 import 'package:attack_on_titan_bloc/data/models/character.dart';
 
 class CharactersRepository {
-  final CharactersService charactersService;
+  final AttackOnTitanApiService _apiService;
 
-  CharactersRepository({required this.charactersService});
+  CharactersRepository(this._apiService);
 
-  Future<List<Character>> getAllCharacters() async {
-    final characters = await charactersService.getAllCharacters();
-  return characters.map((character) => Character.fromJson(character)).toList();
-  }
+  Future<List<Character>> getAllCharacters() => _apiService.fetchCharacters();
+
+  Future<Character> getCharacterById(int id) =>
+      _apiService.fetchCharacterById(id);
+
+  Future<List<Character>> searchCharacters(String query) =>
+      _apiService.searchCharacters(query);
 }
