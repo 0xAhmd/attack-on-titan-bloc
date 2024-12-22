@@ -4,7 +4,7 @@ class Character {
   late String image;
   late List<String> nicknames;
   late List<String> roles;
-  late int age;
+  late dynamic age;
   late String gender;
   late String height;
   late String status;
@@ -20,14 +20,24 @@ class Character {
     image = json['img'] ?? '';
     nicknames = (json['alias'] as List<dynamic>?)?.cast<String>() ?? [];
     roles = (json['species'] as List<dynamic>?)?.cast<String>() ?? [];
-    age = json['age'] is int ? json['age'] : 0;
+    age = json['age'] is int ? json['age'] : 'Unknown Age';
     gender = json['gender'] ?? 'Unknown';
     height = json['height'] ?? 'Unknown';
     status = json['status'] ?? 'Unknown';
     birthplace = json['birthplace'] ?? 'Unknown';
     residence = json['residence'] ?? 'Unknown';
-    family = json['family'] ?? 'Unknown';
+
+// Correctly access the family data from the relatives field
+if (json['relatives'] != null && (json['relatives'] as List).isNotEmpty) {
+    family = (json['relatives'] as List)
+        .map((relative) => relative['family'] as String?)
+        .where((family) => family != null)
+        .join(', ');
+  } else {
+    family = 'Unknown';
+  }
+
     occupation = json['occupation'] ?? 'Unknown';
-    episodes = (json['episodes'] as List<dynamic>?)?.cast<String>() ?? [];
+    // episodes = (json['episodes'] as List<dynamic>?)?.cast<String>() ?? [];
   }
 }
