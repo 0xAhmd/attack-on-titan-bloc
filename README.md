@@ -13,24 +13,8 @@ The app aims to provide a comprehensive and immersive experience for fans of the
 ## Features
 
 - **Character Information:** View detailed information about the characters, including their backstory, affiliations, and appearances.
-- **Episodes List:** Browse through episodes and view information such as air dates, episode summaries, and more.
-- **Locations:** Discover key locations in the Attack on Titan world.
-- **Organizations:** Learn about the different organizations in the series.
-- **Titans:** Find out more about the titans that play a central role in the story.
-
-## Technologies Used
-
-- **Flutter** for building the mobile application.
-- **Dart** for app development.
-- **Zach McMullen’s Attack on Titan API** for retrieving data related to the anime series.
-  - API documentation can be found [here](https://github.com/ZachMcM/attack-on-titan-api).
-- **BLoC** for state management in the app.
-- **Flutter Offline** to handle offline capabilities and ensure the app functions even when the network is unavailable.
-- **Dio** for making HTTP requests to the Attack on Titan API.
-- **Device Preview** for previewing and testing the UI on various devices.
-- **Google Fonts** for better typography and a variety of font options.
-- **Lottie** for adding animations to enhance the user experience.
-
+- **Titans:** Find out more about the titans that play a central role in the story (coming soon).
+  
 ## Try It on Your Machine!
 
 1. Clone the repository to your local machine:
@@ -95,3 +79,4 @@ Contributions are welcome! Feel free to fork the repository, submit pull request
   - **Dio** for HTTP requests.
   - **Device Preview** for device previews.
   - **Google Fonts** for a wide selection of fonts.
+  - **animated_text_kit** for a collection of animated texts .
