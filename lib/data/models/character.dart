@@ -44,4 +44,3 @@ class Character {
     episodes = (json['episodes'] as List<dynamic>?)?.cast<String>() ?? [];
   }
 }
-
