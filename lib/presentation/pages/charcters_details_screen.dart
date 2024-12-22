@@ -1,6 +1,9 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:attack_on_titan_bloc/constants/colors.dart';
+import 'package:attack_on_titan_bloc/data/models/char_qoutes.dart';
 import 'package:attack_on_titan_bloc/data/models/character.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CharctersDetailsScreen extends StatelessWidget {
   const CharctersDetailsScreen({super.key, required this.character});
@@ -32,6 +35,8 @@ class CharctersDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final Qoutes quotes = Qoutes();
+
     return Scaffold(
       backgroundColor: MyColors.navy,
       body: CustomScrollView(
@@ -64,13 +69,15 @@ class CharctersDetailsScreen extends StatelessWidget {
                       buildDeviderPerCharacter(300),
                       characterInfo('Residence : ', character.residence),
                       buildDeviderPerCharacter(270),
-                      const SizedBox(
-                        height: 20,
-                      )
+                      Container(
+                        margin: const EdgeInsets.only(top: 20),
+                        child: characterDescription(
+                            'Description: ', getDescription(character.name)),
+                      ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 500)
+                const SizedBox(height: 300)
               ],
             ),
           ),
@@ -87,18 +94,36 @@ Widget characterInfo(String title, String info) {
     text: TextSpan(children: [
       TextSpan(
           text: title,
-          style: const TextStyle(
+          style: TextStyle(
+            fontFamily: GoogleFonts.tinos().fontFamily,
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: 19,
           )),
       TextSpan(
           text: info,
-          style: const TextStyle(
+          style: TextStyle(
+            fontFamily: GoogleFonts.tinos().fontFamily,
             color: Colors.white,
-            fontSize: 16,
+            fontSize: 18,
           )),
     ]),
+  );
+}
+
+Widget characterDescription(String title, String description) {
+  return AnimatedTextKit(
+    animatedTexts: [
+      TypewriterAnimatedText(
+        description,
+        textStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 27,
+        ),
+        speed: const Duration(milliseconds: 50),
+      ),
+    ],
+    repeatForever: false,
   );
 }
 

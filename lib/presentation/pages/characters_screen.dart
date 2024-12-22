@@ -4,6 +4,7 @@ import 'package:attack_on_titan_bloc/data/models/character.dart';
 import 'package:attack_on_titan_bloc/presentation/widget/character_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_offline/flutter_offline.dart';
 
 class CharactersScreen extends StatefulWidget {
   const CharactersScreen({super.key});
@@ -181,16 +182,33 @@ class _CharactersScreenState extends State<CharactersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        elevation: 0,
-        title: isSearching ? buildSearchField() : buildAppBarTitle(),
-        backgroundColor: MyColors.navy,
-        actions: [
-          ...buildAppBarActions(),
-        ],
-      ),
-      body: buildBlocWidget(),
-    );
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          elevation: 0,
+          title: isSearching ? buildSearchField() : buildAppBarTitle(),
+          backgroundColor: MyColors.navy,
+          actions: [
+            ...buildAppBarActions(),
+          ],
+        ),
+        body: buildBlocWidget());
   }
+}
+
+Widget buildNoInternet() {
+  return Center(
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+    Image.asset('assets/images/no_internet.gif'),
+    const Text(
+      'No Internet Connection',
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 22,
+      ),
+    ),
+    const SizedBox(height: 10),
+    const Text(
+      'Please check your internet connection',
+    ),
+  ]));
 }

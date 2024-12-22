@@ -11,6 +11,8 @@ void main() {
   ));
 }
 
+void updateCharacterBirthplace(int i, String s) {}
+
 class AttackOnTitanApp extends StatelessWidget {
   final AppRouter appRouter;
 
@@ -25,8 +27,7 @@ class AttackOnTitanApp extends StatelessWidget {
         fontFamily: GoogleFonts.tinos().fontFamily,
       ),
       debugShowCheckedModeBanner: false,
-      onGenerateRoute:
-          appRouter.generateRoute,
+      onGenerateRoute: appRouter.generateRoute,
     );
   }
 }

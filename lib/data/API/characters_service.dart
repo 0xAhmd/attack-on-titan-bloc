@@ -26,6 +26,8 @@ class AttackOnTitanApiService {
     }
   }
 
+
+
   Future<Character> fetchCharacterById(int id) async {
     final url = '$_baseUrl/characters/$id';
     try {

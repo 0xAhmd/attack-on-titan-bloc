@@ -24,20 +24,24 @@ class Character {
     gender = json['gender'] ?? 'Unknown';
     height = json['height'] ?? 'Unknown';
     status = json['status'] ?? 'Unknown';
-    birthplace = json['birthplace'] ?? 'Unknown';
     residence = json['residence'] ?? 'Unknown';
 
+    birthplace = json['birthplace'] != null && json['birthplace'].length > 20
+        ? json['birthplace'].substring(0, 20)
+        : (json['birthplace'] ?? 'Unknown');
+
 // Correctly access the family data from the relatives field
-if (json['relatives'] != null && (json['relatives'] as List).isNotEmpty) {
-    family = (json['relatives'] as List)
-        .map((relative) => relative['family'] as String?)
-        .where((family) => family != null)
-        .join(', ');
-  } else {
-    family = 'Unknown';
-  }
+    if (json['relatives'] != null && (json['relatives'] as List).isNotEmpty) {
+      family = (json['relatives'] as List)
+          .map((relative) => relative['family'] as String?)
+          .where((family) => family != null)
+          .join(', ');
+    } else {
+      family = 'Unknown';
+    }
 
     occupation = json['occupation'] ?? 'Unknown';
-    // episodes = (json['episodes'] as List<dynamic>?)?.cast<String>() ?? [];
+    episodes = (json['episodes'] as List<dynamic>?)?.cast<String>() ?? [];
   }
 }
+
