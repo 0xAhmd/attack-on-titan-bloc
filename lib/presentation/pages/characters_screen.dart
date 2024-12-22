@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
+import '../widget/no_internet_widget.dart';
+
 class CharactersScreen extends StatefulWidget {
   const CharactersScreen({super.key});
 
@@ -208,33 +210,4 @@ class _CharactersScreenState extends State<CharactersScreen> {
           child: const Center(child: CircularProgressIndicator()),
         ));
   }
-}
-
-Widget buildNoInternet() {
-  return Center(
-      child: SizedBox.expand(
-    child: Container(
-      decoration: const BoxDecoration(
-        color: MyColors.navy,
-      ),
-      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Image.asset('assets/images/no_internet.gif'),
-        const Text(
-          'No Internet Connection',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 22,
-          ),
-        ),
-        const SizedBox(height: 10),
-        const Text(
-          'Please check your internet connection',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 12,
-          ),
-        ),
-      ]),
-    ),
-  ));
 }
