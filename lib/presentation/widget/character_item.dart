@@ -1,6 +1,6 @@
-import 'package:attack_on_titan_bloc/constants/colors.dart';
-import 'package:attack_on_titan_bloc/constants/strings.dart';
-import 'package:attack_on_titan_bloc/data/models/character.dart';
+import '../../constants/colors.dart';
+import '../../constants/strings.dart';
+import '../../data/models/character.dart';
 import 'package:flutter/material.dart';
 
 class CharacterItemCard extends StatelessWidget {
@@ -51,7 +51,7 @@ class CharacterItemCard extends StatelessWidget {
                   child: character.image.isNotEmpty
                       ? FadeInImage.assetNetwork(
                           fit: BoxFit.cover,
-                          placeholder: 'assets/images/loading.gif',
+                          placeholder: 'assets/images/loading2.gif',
                           image: character.image,
                           width: double.infinity,
                           height: double.infinity,

@@ -1,5 +1,5 @@
-import 'package:attack_on_titan_bloc/data/API/characters_service.dart';
-import 'package:attack_on_titan_bloc/data/models/character.dart';
+import '../API/characters_service.dart';
+import '../models/character.dart';
 
 class CharactersRepository {
   final AttackOnTitanApiService _apiService;

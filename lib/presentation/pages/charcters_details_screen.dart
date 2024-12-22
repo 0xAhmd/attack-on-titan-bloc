@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:attack_on_titan_bloc/constants/colors.dart';
-import 'package:attack_on_titan_bloc/data/models/char_qoutes.dart';
-import 'package:attack_on_titan_bloc/data/models/character.dart';
+import '../../constants/colors.dart';
+import '../../data/models/char_qoutes.dart';
+import '../../data/models/character.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

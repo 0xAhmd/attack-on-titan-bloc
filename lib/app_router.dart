@@ -1,10 +1,10 @@
-import 'package:attack_on_titan_bloc/business_logic/cubit/character_cubit.dart';
-import 'package:attack_on_titan_bloc/constants/strings.dart';
-import 'package:attack_on_titan_bloc/data/API/characters_service.dart';
-import 'package:attack_on_titan_bloc/data/models/character.dart';
-import 'package:attack_on_titan_bloc/data/repository/characters_repo.dart';
-import 'package:attack_on_titan_bloc/presentation/pages/characters_screen.dart';
-import 'package:attack_on_titan_bloc/presentation/pages/charcters_details_screen.dart';
+import 'business_logic/cubit/character_cubit.dart';
+import 'constants/strings.dart';
+import 'data/API/characters_service.dart';
+import 'data/models/character.dart';
+import 'data/repository/characters_repo.dart';
+import 'presentation/pages/characters_screen.dart';
+import 'presentation/pages/charcters_details_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

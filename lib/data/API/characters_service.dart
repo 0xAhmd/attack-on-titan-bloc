@@ -1,4 +1,4 @@
-import 'package:attack_on_titan_bloc/data/models/character.dart';
+import '../models/character.dart';
 import 'package:dio/dio.dart';
 
 class AttackOnTitanApiService {

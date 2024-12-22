@@ -1,7 +1,7 @@
-import 'package:attack_on_titan_bloc/business_logic/cubit/character_cubit.dart';
-import 'package:attack_on_titan_bloc/constants/colors.dart';
-import 'package:attack_on_titan_bloc/data/models/character.dart';
-import 'package:attack_on_titan_bloc/presentation/widget/character_item.dart';
+import '../../business_logic/cubit/character_cubit.dart';
+import '../../constants/colors.dart';
+import '../../data/models/character.dart';
+import '../widget/character_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
@@ -191,24 +191,50 @@ class _CharactersScreenState extends State<CharactersScreen> {
             ...buildAppBarActions(),
           ],
         ),
-        body: buildBlocWidget());
+        body: OfflineBuilder(
+          connectivityBuilder: (
+            BuildContext context,
+            List<ConnectivityResult> connectivity,
+            Widget? child,
+          ) {
+            final bool connected =
+                !connectivity.contains(ConnectivityResult.none);
+            if (connected) {
+              return buildBlocWidget(); // Display data when connected
+            } else {
+              return buildNoInternet(); // Display no internet message when disconnected
+            }
+          },
+          child: const Center(child: CircularProgressIndicator()),
+        ));
   }
 }
 
 Widget buildNoInternet() {
   return Center(
-      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-    Image.asset('assets/images/no_internet.gif'),
-    const Text(
-      'No Internet Connection',
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 22,
+      child: SizedBox.expand(
+    child: Container(
+      decoration: const BoxDecoration(
+        color: MyColors.navy,
       ),
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Image.asset('assets/images/no_internet.gif'),
+        const Text(
+          'No Internet Connection',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 22,
+          ),
+        ),
+        const SizedBox(height: 10),
+        const Text(
+          'Please check your internet connection',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 12,
+          ),
+        ),
+      ]),
     ),
-    const SizedBox(height: 10),
-    const Text(
-      'Please check your internet connection',
-    ),
-  ]));
+  ));
 }

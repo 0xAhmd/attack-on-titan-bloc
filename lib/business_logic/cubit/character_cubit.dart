@@ -1,7 +1,8 @@
-import 'package:attack_on_titan_bloc/data/models/character.dart';
-import 'package:attack_on_titan_bloc/data/repository/characters_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+
+import '../../data/models/character.dart';
+import '../../data/repository/characters_repo.dart';
 
 part 'character_state.dart';
 
