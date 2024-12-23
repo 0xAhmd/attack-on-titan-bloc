@@ -10,7 +10,7 @@ class TitansCubit extends Cubit<TitansState> {
   List<Titan> titans = [];
   TitansCubit(this.titansRepository) : super(TitansInitial());
 
-  List<Titan> getCharacters() {
+  List<Titan> getTitans() {
     titansRepository.getAllTitans().then((titans) {
       this.titans = titans;
       emit(TitansLoaded(titans));

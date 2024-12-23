@@ -1,32 +1,25 @@
-import 'package:attack_on_titan_bloc/presentation/pages/titans_screen.dart';
-
-import '../../business_logic/cubit/cubit/character_cubit.dart';
-import '../../business_logic/cubit/cubit/cubit/cubit/bottom_nav_cubit.dart';
-import '../../constants/colors.dart';
-import '../../data/models/character.dart';
-import '../widget/character_item.dart';
+import 'package:attack_on_titan_bloc/business_logic/cubit/cubit/cubit/titans_cubit.dart';
+import 'package:attack_on_titan_bloc/data/models/titans_model.dart';
+import 'package:attack_on_titan_bloc/presentation/widget/no_internet_widget.dart';
+import 'package:attack_on_titan_bloc/presentation/widget/titan_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
-import '../widget/no_internet_widget.dart';
+import '../../constants/colors.dart';
 
-class CharactersScreen extends StatefulWidget {
-  const CharactersScreen({super.key});
+class TitansScreen extends StatefulWidget {
+  const TitansScreen({super.key});
 
   @override
-  State<CharactersScreen> createState() => _CharactersScreenState();
+  State<TitansScreen> createState() => _TitansScreenState();
 }
 
-class _CharactersScreenState extends State<CharactersScreen> {
-  late List<Character> allCharacters;
-  late List<Character> filteredCharacters;
+class _TitansScreenState extends State<TitansScreen> {
+  late List<Titan> allTitans;
+  late List<Titan> filteredTitans;
   bool isSearching = false;
   final TextEditingController _searchController = TextEditingController();
-  final List<Widget> screens = [
-    const CharactersScreen(),
-    const TitansScreen(),
-  ];
 
   Widget buildSearchField() {
     return TextField(
@@ -51,7 +44,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
   }
 
   void addFilteredCharacters(String query) {
-    filteredCharacters = allCharacters
+    filteredTitans = allTitans
         .where((character) =>
             character.name.toLowerCase().contains(query.toLowerCase()))
         .toList();
@@ -122,14 +115,22 @@ class _CharactersScreenState extends State<CharactersScreen> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<CharacterCubit>(context).getCharacters();
+    BlocProvider.of<TitansCubit>(context).getTitans();
   }
 
+  Widget buildAppBarTitle() {
+    return const Text(
+      'Characters',
+      style: TextStyle(fontSize: 32, color: Colors.white),
+    );
+  }
+
+  
   Widget buildBlocWidget() {
-    return BlocBuilder<CharacterCubit, CharacterState>(
+    return BlocBuilder<TitansCubit, TitansState>(
         builder: (context, state) {
-      if (state is CharacterLoaded) {
-        allCharacters = (state).characters;
+      if (state is TitansLoaded) {
+        allTitans = (state).titans;
         return buildLoadedListWidget();
       } else {
         return const Center(child: CircularProgressIndicator());
@@ -137,21 +138,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
     });
   }
 
-  Widget buildLoadedListWidget() {
-    return SingleChildScrollView(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          children: [buildCharactersList()],
-        ),
-      ),
-    );
-  }
-
-  Widget buildCharactersList() {
+   Widget buildTitansList() {
     return Container(
       decoration: const BoxDecoration(
         color: MyColors.navy,
@@ -168,57 +155,60 @@ class _CharactersScreenState extends State<CharactersScreen> {
           mainAxisSpacing: 0.5,
         ),
         itemCount: _searchController.text.isNotEmpty
-            ? filteredCharacters.length
-            : allCharacters.length,
+            ? filteredTitans.length
+            : allTitans.length,
         itemBuilder: (context, index) {
-          return CharacterItemCard(
-            character: _searchController.text.isNotEmpty
-                ? filteredCharacters[index]
-                : allCharacters[index],
+          return TitanItem(
+            titan: _searchController.text.isNotEmpty
+                ? filteredTitans[index]
+                : allTitans[index],
           );
         },
       ),
     );
   }
 
-  Widget buildAppBarTitle() {
-    return const Text(
-      'Characters',
-      style: TextStyle(fontSize: 32, color: Colors.white),
+    Widget buildLoadedListWidget() {
+    return SingleChildScrollView(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          children: [buildTitansList()],
+        ),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BottomNavCubit(),
-      child: Scaffold(
-        // bottomNavigationBar: ,
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            elevation: 0,
-            title: isSearching ? buildSearchField() : buildAppBarTitle(),
-            backgroundColor: MyColors.navy,
-            actions: [
-              ...buildAppBarActions(),
-            ],
-          ),
-          body: OfflineBuilder(
-            connectivityBuilder: (
-              BuildContext context,
-              List<ConnectivityResult> connectivity,
-              Widget? child,
-            ) {
-              final bool connected =
-                  !connectivity.contains(ConnectivityResult.none);
-              if (connected) {
-                return buildBlocWidget(); // Display data when connected
-              } else {
-                return buildNoInternet(); // Display no internet message when disconnected
-              }
-            },
-            child: const Center(child: CircularProgressIndicator()),
-          )),
-    );
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: isSearching ? buildSearchField() : buildAppBarTitle(),
+        backgroundColor: MyColors.navy,
+        actions: [
+          ...buildAppBarActions(),
+        ],
+      ),
+        body: OfflineBuilder(
+          connectivityBuilder: (
+            BuildContext context,
+            List<ConnectivityResult> connectivity,
+            Widget? child,
+          ) {
+            final bool connected =
+                !connectivity.contains(ConnectivityResult.none);
+            if (connected) {
+              return buildBlocWidget(); // Display data when connected
+            } else {
+              return buildNoInternet(); // Display no internet message when disconnected
+            }
+          },
+          child: const Center(child: CircularProgressIndicator()),
+        ));
+    
   }
 }

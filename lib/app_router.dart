@@ -1,3 +1,6 @@
+import 'package:attack_on_titan_bloc/data/models/titans_model.dart';
+import 'package:attack_on_titan_bloc/presentation/pages/titans_screen.dart';
+
 import 'business_logic/cubit/cubit/character_cubit.dart';
 import 'constants/strings.dart';
 import 'data/API/characters_service.dart';
@@ -8,6 +11,8 @@ import 'presentation/pages/charcters_details_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'presentation/pages/titans_details_screen.dart';
 
 class AppRouter {
   late CharacterCubit characterCubit;
@@ -34,6 +39,20 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => CharctersDetailsScreen(
             character: character,
+          ),
+        );
+      case titanScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => characterCubit,
+            child: const TitansScreen(),
+          ),
+        );
+      case titanDetailsScreen:
+        final titan = settings.arguments as Titan;
+        return MaterialPageRoute(
+          builder: (_) => TitansDetailsScreen(
+            titans: titan,
           ),
         );
       default:
