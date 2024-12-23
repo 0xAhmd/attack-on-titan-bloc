@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../models/character.dart';
+import '../models/titans_model.dart';
 
 class AttackOnTitanApiTitanService {
   final String _baseUrl;

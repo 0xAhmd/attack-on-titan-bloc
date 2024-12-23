@@ -1,8 +1,5 @@
-
-
-import 'package:attack_on_titan_bloc/data/models/character.dart';
-
 import '../API/titan_service.dart';
+import '../models/titans_model.dart';
 
 class TitansRepository {
   final AttackOnTitanApiTitanService _apiService;

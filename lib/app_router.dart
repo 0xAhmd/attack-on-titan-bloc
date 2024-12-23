@@ -1,4 +1,4 @@
-import 'business_logic/cubit/character_cubit.dart';
+import 'business_logic/cubit/cubit/character_cubit.dart';
 import 'constants/strings.dart';
 import 'data/API/characters_service.dart';
 import 'data/models/character.dart';
