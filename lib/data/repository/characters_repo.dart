@@ -2,15 +2,14 @@ import '../API/characters_service.dart';
 import '../models/character.dart';
 
 class CharactersRepository {
-  final AttackOnTitanApiService _apiService;
+  final AttackOnTitanApiCharacterService _apiService;
 
   CharactersRepository(this._apiService);
 
-  Future<List<Character>> getAllCharacters() => _apiService.fetchCharacters();
+  Future<List<Titan>> getAllCharacters() => _apiService.fetchCharacters();
 
-  Future<Character> getCharacterById(int id) =>
-      _apiService.fetchCharacterById(id);
+  Future<Titan> getCharacterById(int id) => _apiService.fetchCharacterById(id);
 
-  Future<List<Character>> searchCharacters(String query) =>
+  Future<List<Titan>> searchCharacters(String query) =>
       _apiService.searchCharacters(query);
 }

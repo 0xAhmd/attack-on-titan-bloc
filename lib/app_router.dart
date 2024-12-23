@@ -15,7 +15,8 @@ class AppRouter {
 
   AppRouter() {
     charactersRepository = CharactersRepository(
-        AttackOnTitanApiService('https://api.attackontitanapi.com', Dio()));
+        AttackOnTitanApiCharacterService(
+            'https://api.attackontitanapi.com', Dio()));
     characterCubit = CharacterCubit(charactersRepository);
   }
 
@@ -29,7 +30,7 @@ class AppRouter {
           ),
         );
       case charactersDetailsScreen:
-        final character = settings.arguments as Character;
+        final character = settings.arguments as Titan;
         return MaterialPageRoute(
           builder: (_) => CharctersDetailsScreen(
             character: character,

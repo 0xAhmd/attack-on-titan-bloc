@@ -16,8 +16,8 @@ class CharactersScreen extends StatefulWidget {
 }
 
 class _CharactersScreenState extends State<CharactersScreen> {
-  late List<Character> allCharacters;
-  late List<Character> filteredCharacters;
+  late List<Titan> allCharacters;
+  late List<Titan> filteredCharacters;
   bool isSearching = false;
   final TextEditingController _searchController = TextEditingController();
 

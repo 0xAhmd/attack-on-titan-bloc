@@ -1,6 +1,6 @@
 import '../widget/description.dart';
 import '../../constants/colors.dart';
-import '../../data/models/char_qoutes.dart';
+import '../../helper/character_description.dart';
 import '../../data/models/character.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 class CharctersDetailsScreen extends StatelessWidget {
   const CharctersDetailsScreen({super.key, required this.character});
 
-  final Character character;
+  final Titan character;
 
   Widget buildSliverAppBar() {
     return SliverAppBar(
