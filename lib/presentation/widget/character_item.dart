@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class CharacterItemCard extends StatelessWidget {
   const CharacterItemCard({super.key, required this.character});
 
-  final Titan character;
+  final Character character;
 
   @override
   Widget build(BuildContext context) {

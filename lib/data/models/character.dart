@@ -1,4 +1,4 @@
-class Titan {
+class Character {
   late int id;
   late String name;
   late String image;
@@ -14,7 +14,7 @@ class Titan {
   late String residence;
   late String family;
 
-  Titan.fromJson(Map<String, dynamic> json) {
+  Character.fromJson(Map<String, dynamic> json) {
     id = json['id'] ?? 0;
     name = json['name'] ?? 'Unknown';
     image = json['img'] ?? '';

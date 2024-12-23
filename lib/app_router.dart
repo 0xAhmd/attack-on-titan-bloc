@@ -30,7 +30,7 @@ class AppRouter {
           ),
         );
       case charactersDetailsScreen:
-        final character = settings.arguments as Titan;
+        final character = settings.arguments as Character;
         return MaterialPageRoute(
           builder: (_) => CharctersDetailsScreen(
             character: character,

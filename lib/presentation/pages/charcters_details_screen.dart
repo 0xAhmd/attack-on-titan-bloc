@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 class CharctersDetailsScreen extends StatelessWidget {
   const CharctersDetailsScreen({super.key, required this.character});
 
-  final Titan character;
+  final Character character;
 
   Widget buildSliverAppBar() {
     return SliverAppBar(

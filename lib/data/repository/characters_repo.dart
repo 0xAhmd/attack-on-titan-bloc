@@ -6,10 +6,10 @@ class CharactersRepository {
 
   CharactersRepository(this._apiService);
 
-  Future<List<Titan>> getAllCharacters() => _apiService.fetchCharacters();
+  Future<List<Character>> getAllCharacters() => _apiService.fetchCharacters();
 
-  Future<Titan> getCharacterById(int id) => _apiService.fetchCharacterById(id);
+  Future<Character> getCharacterById(int id) => _apiService.fetchCharacterById(id);
 
-  Future<List<Titan>> searchCharacters(String query) =>
+  Future<List<Character>> searchCharacters(String query) =>
       _apiService.searchCharacters(query);
 }
