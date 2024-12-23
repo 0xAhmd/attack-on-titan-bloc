@@ -17,6 +17,8 @@ class AttackOnTitanApiTitanService {
       if (data is Map<String, dynamic> && data.containsKey('results')) {
         return (data['results'] as List)
             .map((titanJson) => Titan.fromJson(titanJson))
+            .where((titan) =>
+                titan.id != 4 && titan.id != 8) // Exclude IDs 4 and 8
             .toList();
       } else {
         throw Exception('Unexpected response format');

@@ -21,7 +21,7 @@ class TitanItem extends StatelessWidget {
         color: MyColors.white,
       ),
       child: InkWell(
-        onTap: () => Navigator.pushNamed(context, charactersDetailsScreen,
+        onTap: () => Navigator.pushNamed(context, titanDetailsScreen,
             arguments: titan),
         child: GridTile(
             footer: Container(

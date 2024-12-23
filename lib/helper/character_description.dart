@@ -38,7 +38,21 @@ String getDescription(String name) {
     'marlene':
         "Marlene, a cheerful and close friend of Hange Zoë, was a team leader in the Scout Regiment and tragically killed by the Beast Titan during the mission to reclaim Wall Maria.",
     'buchwald':
-        "Buchwald, the horse ridden by Jean during the 57th Exterior Scouting Mission, was a tall, dark brown horse with a black mane, known for his speed and endurance."
+        "Buchwald, the horse ridden by Jean during the 57th Exterior Scouting Mission, was a tall, dark brown horse with a black mane, known for his speed and endurance.",
+    'attack titan':
+        'The Attack Titan, wielded by Eren Yeager, is a powerful titan with immense strength and agility. It is known for its aggressive and relentless fighting style, capable of regenerating quickly and exhibiting great endurance in battle.',
+    'founding titan':
+        "The Founding Titan is one of the Nine Titans and holds the power to control other titans, alter memories, and manipulate the Eldian population. It is an immensely powerful and mysterious titan that can be accessed by those with royal blood, including Eren Yeager after gaining its power.",
+    'war hammer titan':
+        "The War Hammer Titan is one of the Nine Titans, known for its ability to create hard, crystallized structures and weapons from its titan form. Its user, Lara Tybur, was able to control the War Hammer Titan remotely through a crystal-like structure within its body.",
+    'armored titan':
+        "The Armored Titan, wielded by Reiner Braun, is a titan encased in a tough, armor-like layer that grants it great durability and resistance to attacks. The titan is capable of charging at high speeds and has formidable defensive capabilities.",
+    'beast titan':
+        "The Beast Titan, controlled by Zeke Yeager, is a titan with long arms and a powerful throwing ability. It has the unique power to control titans through the scream of its user and is known for its intelligence and strategic thinking.",
+    'female titan':
+        "The Female Titan, wielded by Annie Leonhart, is a versatile and agile titan with enhanced speed and combat capabilities. It is capable of using the hardening ability to create strong defensive structures and has remarkable strength and endurance.",
+    'cart titan':
+        "The Cart Titan is a titan that specializes in carrying large amounts of equipment and resources, often used for logistical support. It is known for its high endurance and ability to move for long periods of time without tiring. Its user, Pieck Finger, uses it for both reconnaissance and combat."
   };
 
   String normalizedName = name.toLowerCase().trim();

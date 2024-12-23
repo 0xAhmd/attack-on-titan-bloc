@@ -52,19 +52,15 @@ class TitansDetailsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      characterInfo('Type : ', titans.abilities.join(' / ')),
+                      characterInfo(
+                          'Abilities : ', titans.abilities.join(' / ')),
                       buildDeviderPerCharacter(310),
                       characterInfo('Name : ', titans.name),
                       buildDeviderPerCharacter(310),
-                      characterInfo('Age : ', titans.allegiance),
+                      characterInfo('Allegiance : ', titans.allegiance),
                       buildDeviderPerCharacter(320),
-                      characterInfo('Role : ', titans.height),
+                      characterInfo('Height : ', titans.height),
                       buildDeviderPerCharacter(320),
-                      characterInfo('Status : ', titans.currentInheritor),
-                      buildDeviderPerCharacter(305),
-                      characterInfo(
-                          'BirthPlace : ', titans.formerInheritors.join(' / ')),
-                      buildDeviderPerCharacter(270),
                       Container(
                         margin: const EdgeInsets.only(top: 20),
                         child: characterDescription(

@@ -26,7 +26,7 @@ class _TitansScreenState extends State<TitansScreen> {
       cursorColor: Colors.white,
       controller: _searchController,
       decoration: const InputDecoration(
-        hintText: 'Find a character...',
+        hintText: 'Find a titan...',
         border: InputBorder.none,
         hintStyle: TextStyle(
           color: Colors.white,
@@ -38,15 +38,15 @@ class _TitansScreenState extends State<TitansScreen> {
         fontSize: 18,
       ),
       onChanged: (query) {
-        addFilteredCharacters(query);
+        addFilteredTitans(query);
       },
     );
   }
 
-  void addFilteredCharacters(String query) {
+  void addFilteredTitans(String query) {
     filteredTitans = allTitans
-        .where((character) =>
-            character.name.toLowerCase().contains(query.toLowerCase()))
+        .where((titan) =>
+            titan.name.toLowerCase().contains(query.toLowerCase()))
         .toList();
     setState(() {});
   }
@@ -120,15 +120,13 @@ class _TitansScreenState extends State<TitansScreen> {
 
   Widget buildAppBarTitle() {
     return const Text(
-      'Characters',
+      'Titans',
       style: TextStyle(fontSize: 32, color: Colors.white),
     );
   }
 
-  
   Widget buildBlocWidget() {
-    return BlocBuilder<TitansCubit, TitansState>(
-        builder: (context, state) {
+    return BlocBuilder<TitansCubit, TitansState>(builder: (context, state) {
       if (state is TitansLoaded) {
         allTitans = (state).titans;
         return buildLoadedListWidget();
@@ -138,7 +136,7 @@ class _TitansScreenState extends State<TitansScreen> {
     });
   }
 
-   Widget buildTitansList() {
+  Widget buildTitansList() {
     return Container(
       decoration: const BoxDecoration(
         color: MyColors.navy,
@@ -168,7 +166,7 @@ class _TitansScreenState extends State<TitansScreen> {
     );
   }
 
-    Widget buildLoadedListWidget() {
+  Widget buildLoadedListWidget() {
     return SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(
@@ -185,14 +183,14 @@ class _TitansScreenState extends State<TitansScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: isSearching ? buildSearchField() : buildAppBarTitle(),
-        backgroundColor: MyColors.navy,
-        actions: [
-          ...buildAppBarActions(),
-        ],
-      ),
+        appBar: AppBar(
+          elevation: 0,
+          title: isSearching ? buildSearchField() : buildAppBarTitle(),
+          backgroundColor: MyColors.navy,
+          actions: [
+            ...buildAppBarActions(),
+          ],
+        ),
         body: OfflineBuilder(
           connectivityBuilder: (
             BuildContext context,
@@ -209,6 +207,5 @@ class _TitansScreenState extends State<TitansScreen> {
           },
           child: const Center(child: CircularProgressIndicator()),
         ));
-    
   }
 }

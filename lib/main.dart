@@ -1,3 +1,5 @@
+import 'package:attack_on_titan_bloc/constants/strings.dart';
+import 'package:attack_on_titan_bloc/presentation/pages/titans_screen.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,6 +31,7 @@ class AttackOnTitanApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: appRouter.generateRoute,
+      // initialRoute: titanScreen,
     );
   }
 }
