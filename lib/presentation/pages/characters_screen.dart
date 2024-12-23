@@ -1,4 +1,4 @@
-import 'package:attack_on_titan_bloc/presentation/pages/titans_screen.dart';
+import 'titans_screen.dart';
 
 import '../../business_logic/cubit/cubit/character_cubit.dart';
 import '../../business_logic/cubit/cubit/cubit/cubit/bottom_nav_cubit.dart';

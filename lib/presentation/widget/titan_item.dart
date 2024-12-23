@@ -1,4 +1,4 @@
-import 'package:attack_on_titan_bloc/data/models/titans_model.dart';
+import '../../data/models/titans_model.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/strings.dart';

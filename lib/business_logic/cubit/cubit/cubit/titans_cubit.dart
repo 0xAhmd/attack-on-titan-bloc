@@ -1,5 +1,5 @@
-import 'package:attack_on_titan_bloc/data/models/titans_model.dart';
-import 'package:attack_on_titan_bloc/data/repository/titan_repo.dart';
+import '../../../../data/models/titans_model.dart';
+import '../../../../data/repository/titan_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 

@@ -1,7 +1,7 @@
-import 'package:attack_on_titan_bloc/business_logic/cubit/cubit/cubit/titans_cubit.dart';
-import 'package:attack_on_titan_bloc/data/models/titans_model.dart';
-import 'package:attack_on_titan_bloc/presentation/widget/no_internet_widget.dart';
-import 'package:attack_on_titan_bloc/presentation/widget/titan_item.dart';
+import '../../business_logic/cubit/cubit/cubit/titans_cubit.dart';
+import '../../data/models/titans_model.dart';
+import '../widget/no_internet_widget.dart';
+import '../widget/titan_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
